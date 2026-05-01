@@ -1,0 +1,5 @@
+QuadratureEncoder  KEYWORD1
+begin              KEYWORD2
+read               KEYWORD2
+write              KEYWORD2
+PORT_PIN           MACRO

@@ -1,0 +1,18 @@
+{
+  "name": "RA4M1_QuadratureEncoder",
+  "version": "1.0.0",
+  "description": "Quadrature encoder counter library for Renesas RA4M1 GPT peripherals.",
+  "keywords": [
+    "renesas",
+    "ra4m1",
+    "gpt",
+    "encoder",
+    "quadrature"
+  ],
+  "frameworks": "arduino",
+  "platforms": "renesas-ra",
+  "headers": "RA4M1_QuadratureEncoder.h",
+  "build": {
+    "srcDir": "src"
+  }
+}
