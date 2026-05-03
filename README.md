@@ -1,35 +1,77 @@
 # RA4M1_QuadratureEncoder
 
-Renesas RA4M1 の GPT 位相計数機能を使って、ロータリーエンコーダをカウントするためのライブラリです。
+Arduino library for counting encoders using the GPT phase counter function of the Renesas RA4M1 microcontroller.
 
-## 対応環境
+[日本語 (Japanese)](README_JP.md)
 
-- Arduino IDE
-- PlatformIO
-- 対象ボード: Renesas RA4M1 搭載ボード
+## Supported frameworks and devices 
+
+- Arduino IDE / PlatformIO
+- Renesas RA4M1 based boards\
+ (e.g., Arduino UNO R4 Minima, Arduino UNO R4 WiFi)
+
+## Pin assignment chart
+
+| GPT CH | PinA / PinB | R4-Minima Pin | R4-WiFi Pin |
+|---:|---|---|---|
+| 0 (32bit) | P107 / P106 | D7 / D6 | D5 / D4 |
+| 1 (32bit) | P105 / P104 | D2, D11 / D3, D12 | D3 / D2 |
+| 2 (16bit) | P103 / P102 | D4 / D5 | D10 / D13 |
+| 3 (16bit) | P111 / P112 | D13 / D10 | D6 / D7 |
+| 4 (16bit) | P302 / P301 | D1 / D0 | D1 / D0 |
+| 5 (16bit) | P100 / P101 | D15 / D14 | D15 / D14 |
+| 6 (16bit) | P411 / P410 | - / - | D11 / D12 |
+| 7 (16bit) | P304 / P303 | D8 / D9 | D8 / D9 |
+
+<details>
+<summary>Arduino official boards pinout</summary>
+
+<figure>
+  <img src="docs/img/R4-Minima_pinout.png" alt="Arduino UNO R4 Minima pinout">
+  <figcaption>Arduino UNO R4 Minima</figcaption>
+</figure>
+
+<figure>
+  <img src="docs/img/R4-WiFi_pinout.png" alt="Arduino UNO R4 WiFi pinout">
+  <figcaption>Arduino UNO R4 WiFi</figcaption>
+</figure>
+
+</details>
 
 ## API
 
-### QuadratureEncoder(uint8_t timer_ch, uint16_t pinA, uint16_t pinB)
+### `QuadratureEncoder(uint8_t timer_ch, uint16_t pinA, uint16_t pinB)`
 
-`timer_ch` は GPT0 から GPT7 までのチャネル番号です。
+Creates an encoder instance for the specified GPT channel.
 
-`pinA` と `pinB` は `105` や `PORT_PIN(1, 5)` のような RA4M1 のポート/ピン表記を指定します。
+- `timer_ch`: GPT channel number from **0 to 7**
+- `pinA`, `pinB`: RA4M1 port/pin values such as `105` or `PORT_PIN(1, 5)`
 
-### begin()
+### `begin()`
 
-GPT と入出力ピンを初期化し、カウントを開始します。
+Initializes the GPT and I/O pins, then starts counting.
 
-### read()
+### `read()`
 
-現在のカウント値を `int32_t` で返します。
+Returns the current counter value as `int32_t`.
 
-### write(int32_t value)
+### `write(int32_t value)`
 
-カウンタ値を指定値に設定します。
+Sets the counter to the specified value.
 
-## 注意事項
+## ⚠️ Disclaimer
 
-- ピン番号は RA4M1 のポート表記に合わせて指定してください。
-- 使用する GPT チャネルとピンの組み合わせは、ボードのピン配置に依存します。
-- 初期化前に対象ピンが他の機能で使われていないことを確認してください。
+- **Direct hardware pin control:**
+    The library configures the GTIOCxA/B function by modifying the register of the specified pin. After executing `begin()`, the pin will be dedicated exclusively to encoder input.
+- **Timer conflicts with other libraries:**
+    Please ensure that the GPT channel you are using does not conflict with other libraries (such as servo control).
+- **Pin mapping differences:**
+    Internal routing may vary depending on the board. Please refer to the schematic or datasheet for your specific board, such as Minima or WiFi.
+- **Handling of samples:**
+    Sample sketches are for reference only. Please adjust them to match your wiring and encoder specifications (such as whether pull-up resistors are required).
+- **Pre-checking Pins:**
+    Before calling `begin()`, verify that the target pin is not already in use by other peripherals or libraries.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

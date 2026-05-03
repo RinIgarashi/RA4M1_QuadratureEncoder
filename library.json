@@ -1,6 +1,6 @@
 {
   "name": "RA4M1_QuadratureEncoder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Quadrature encoder counter library for Renesas RA4M1 GPT peripherals.",
   "keywords": [
     "renesas",
@@ -9,10 +9,17 @@
     "encoder",
     "quadrature"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RinIgarashi/RA4M1_QuadratureEncoder.git"
+  },
+  "authors": [
+    {
+      "name": "Rin Igarashi"
+    }
+  ],
+  "license": "MIT",
   "frameworks": "arduino",
   "platforms": "renesas-ra",
-  "headers": "RA4M1_QuadratureEncoder.h",
-  "build": {
-    "srcDir": "src"
-  }
+  "headers": "RA4M1_QuadratureEncoder.h"
 }
