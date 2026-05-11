@@ -15,7 +15,7 @@ Arduino library for counting encoders using the GPT phase counter function of th
 | GPT CH | PinA / PinB | R4-Minima Pin | R4-WiFi Pin |
 |---:|---|---|---|
 | 0 (32bit) | P107 / P106 | D7 / D6 | D5 / D4 |
-| 1 (32bit) | P105 / P104 | D2, D11 / D3, D12 | D3 / D2 |
+| 1 (32bit) | P105, P109 / P104, P110 | D2, D11 / D3, D12 | D3 / D2 |
 | 2 (16bit) | P103 / P102 | D4 / D5 | D10 / D13 |
 | 3 (16bit) | P111 / P112 | D13 / D10 | D6 / D7 |
 | 4 (16bit) | P302 / P301 | D1 / D0 | D1 / D0 |
